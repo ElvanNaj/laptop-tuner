@@ -1,0 +1,20 @@
+#!/bin/bash
+# ccontrol - launch laptop-tuner TUI with automatic sudo prompt.
+# Usage:
+#   ccontrol              -> interactive TUI
+#   ccontrol --status     -> quick status readout
+#   ccontrol --apply      -> apply saved config without TUI
+
+BIN=/usr/local/sbin/laptop-tuner
+
+if [ ! -x "$BIN" ]; then
+    echo "laptop-tuner is not installed yet." >&2
+    echo "Run: sudo ./install.sh" >&2
+    exit 1
+fi
+
+if [ "$(id -u)" -eq 0 ]; then
+    exec "$BIN" "$@"
+fi
+
+exec sudo "$BIN" "$@"

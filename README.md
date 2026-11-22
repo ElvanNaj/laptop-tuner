@@ -29,7 +29,7 @@ highest frequency. The desired cap is then applied normally. Keeping
 | Thermal / Fan | ASUS fan boost mode (normal/overboost/silent), PWM mode (auto/full/manual) and manual PWM value, ACPI platform profile, ASUS thermal policy |
 | Light / Battery | Keyboard backlight level, keyboard RGB mode/colour/speed/save-to-BIOS, battery charge limit |
 | Power / Other | NVIDIA GPU power limit (`nvidia-smi -pl`), CPU undervolt via MSR `0x150` |
-| Monitoring | Live CPU temperature, current/cap frequency, throttle counters, fan state, GPU utilisation/power/temperature, available RAM, battery limit |
+| Monitoring | Live CPU temperature, current/cap frequency, throttle counters, fan state, GPU utilisation/power/temperature, VRAM used/total, available RAM, battery limit |
 
 The TUI runs monitoring in a background thread, so holding arrow keys stays
 responsive and the status panel refreshes on its own.

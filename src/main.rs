@@ -388,7 +388,7 @@ fn apply(cfg: &BTreeMap<String, String>) -> Vec<String> {
 fn nvidia_query() -> String {
     match Command::new("nvidia-smi")
         .args([
-            "--query-gpu=utilization.gpu,power.draw,temperature.gpu",
+            "--query-gpu=utilization.gpu,power.draw,temperature.gpu,memory.used,memory.total",
             "--format=csv,noheader,nounits",
         ])
         .output()
@@ -463,6 +463,11 @@ fn status_lines() -> Vec<String> {
         format!("GPU util      : {}", gpu_parts.first().copied().unwrap_or("-")),
         format!("GPU power     : {} W", gpu_parts.get(1).copied().unwrap_or("-")),
         format!("GPU temp      : {} C", gpu_parts.get(2).copied().unwrap_or("-")),
+        format!(
+            "VRAM          : {} / {} MiB",
+            gpu_parts.get(3).copied().unwrap_or("-"),
+            gpu_parts.get(4).copied().unwrap_or("-")
+        ),
         format!("RAM available : {}", mem_available()),
         format!("Platform      : {}", read_sys("/sys/firmware/acpi/platform_profile")),
         format!("Battery limit : {}%", read_sys(BAT_LIMIT)),
